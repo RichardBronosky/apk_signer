@@ -1,3 +1,4 @@
+set -x
 config_file=config.ini
 
 # function to parse the ini style configuration file
@@ -33,7 +34,7 @@ sign_align(){
 # These 2 cd commands allow $config_file to be relative to the path of this script
 cd $(dirname $(readlink ./apk_signer.sh || echo ./apk_signer.sh))
 config_parser $config_file
-cd -
+cd - >/dev/null
 
 for f in "$@"; do
     name_package=$(package_name "$f");
